@@ -19,7 +19,9 @@ export default function AppSidebar() {
   return (
     <aside ref={ref} data-expanded={expanded} aria-expanded={expanded} className={className}>
       <div className={classes.menus}>
-        <Button variant='outline'>123123</Button>
+        <Button variant='outline' className='w-full'>
+          123123
+        </Button>
         <Button variant='outline'>123123</Button>
         <Button variant='outline'>123123</Button>
         <Button variant='outline'>123123</Button>
