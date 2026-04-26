@@ -1,4 +1,13 @@
-import { Button } from '@/components/ui/button';
+import {
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+} from '@/components/ui/sidebar';
 import { useAppStore } from '@/hooks/useAppStore';
 import { useMediaQuery } from '@mantine/hooks';
 import clsx from 'clsx';
@@ -19,14 +28,20 @@ export default function AppSidebar() {
   return (
     <aside ref={ref} data-expanded={expanded} aria-expanded={expanded} className={className}>
       <div className={classes.menus}>
-        <Button variant='outline' className='w-full'>
-          123123
-        </Button>
-        <Button variant='outline'>123123</Button>
-        <Button variant='outline'>123123</Button>
-        <Button variant='outline'>123123</Button>
-        <Button variant='outline'>123123</Button>
-        <Button variant='outline'>123123</Button>
+        <SidebarProvider>
+          <SidebarContent>
+            <SidebarGroup>
+              <SidebarGroupLabel>Hello Grouop 1</SidebarGroupLabel>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  <SidebarMenuItem>
+                    <SidebarMenuButton isActive>Hello</SidebarMenuButton>
+                  </SidebarMenuItem>
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </SidebarGroup>
+          </SidebarContent>
+        </SidebarProvider>
       </div>
     </aside>
   );
