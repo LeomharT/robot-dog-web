@@ -13,7 +13,14 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAppStore } from '@/hooks/useAppStore';
 import { useTheme, type Theme } from '@/hooks/useTheme';
 import { useMediaQuery } from '@mantine/hooks';
-import { IconDeviceDesktop, IconMenu, IconMoon, IconSun, IconX } from '@tabler/icons-react';
+import {
+  IconDeviceDesktop,
+  IconMenu,
+  IconMoon,
+  IconSelector,
+  IconSun,
+  IconX,
+} from '@tabler/icons-react';
 import { useEffect } from 'react';
 import { useShallow } from 'zustand/shallow';
 
@@ -37,9 +44,10 @@ export default function AppHeader() {
     <header className='h-14 flex items-center justify-between px-6'>
       <Button className='hover:bg-[#DFDFDF] gap-3' variant='ghost' size='lg'>
         <Avatar size='sm'>
-          <AvatarFallback>P</AvatarFallback>
+          <AvatarFallback className='bg-primary text-muted'>P</AvatarFallback>
         </Avatar>
         Personal
+        <IconSelector />
       </Button>
       <div className='flex flex-row items-center'>
         <Button hidden={matches} size='icon' variant='outline' onClick={() => toggleSiderbar()}>
