@@ -6,6 +6,7 @@ import {
 } from '@tabler/icons-react';
 import clsx from 'clsx';
 import { useEffect, useState, type PointerEvent } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 
 type Positions = 'left' | 'right' | 'forward' | 'backward';
 
@@ -28,7 +29,7 @@ function getPositionClassName(position: Positions) {
     'absolute',
     'cursor-pointer',
     'select-none',
-    'hover:bg-white',
+    'hover:bg-card',
     'rounded-full',
   );
 }
@@ -42,7 +43,7 @@ function getCenterClassName(position?: Positions) {
   };
 
   return clsx(
-    'w-[65%] h-[65%] bg-[#DFDFDF] rounded-full transition-all duration-75',
+    'w-[65%] h-[65%] bg-secondary rounded-full transition-all duration-75',
     position ? map[position] : '',
   );
 }
@@ -77,23 +78,30 @@ export default function MovementControls() {
   }, [position]);
 
   return (
-    <div className='w-56 h-56 rounded-full bg-[#f3f3f3] relative border border-gray-300'>
-      <section>
-        {Object.keys(config).map((key) => (
-          <button
-            key={key}
-            className={getPositionClassName(key as Positions)}
-            onPointerDown={(e) => handleOnPointerDown(e, key as Positions)}
-            onPointerUp={handleOnPointerUp}
-          >
-            {config[key as keyof typeof config].icon}
-            {config[key as keyof typeof config].label}
-          </button>
-        ))}
-      </section>
-      <div className='absolute w-[40%] h-[40%] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] bg-white rounded-full flex items-center justify-center border border-gray-300'>
-        <div className={getCenterClassName(position)}></div>
-      </div>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>移动控制</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className='w-56 h-56 rounded-full bg-secondary relative border border-border'>
+          <section>
+            {Object.keys(config).map((key) => (
+              <button
+                key={key}
+                className={getPositionClassName(key as Positions)}
+                onPointerDown={(e) => handleOnPointerDown(e, key as Positions)}
+                onPointerUp={handleOnPointerUp}
+              >
+                {config[key as keyof typeof config].icon}
+                {config[key as keyof typeof config].label}
+              </button>
+            ))}
+          </section>
+          <div className='absolute w-[40%] h-[40%] left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] bg-card rounded-full flex items-center justify-center border border-border'>
+            <div className={getCenterClassName(position)}></div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
